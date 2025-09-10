@@ -20,7 +20,21 @@ class AuthController extends Controller
             'username' => 'required|min:3|max:20',
             'email' => 'required|email',
             'password' => 'required|min:3|max:20',
-        ]);
+        ],
+        [
+            'username.required' => 'O campo de nome é obrigatório!',
+            'username.min' => 'O campo de nome deve ter no mínimo 3 caracteres!',
+            'username.max' => 'O campo de nome deve ter no máximo 20 caracteres!',
+
+            'email.required' => 'O campo de email é obrigatório!',
+            'email.email' => 'O valor digitado deve ser um email!',
+
+            'password.required' => 'O campo de senha é obrigatório!',
+            'password.min' => 'O campo de senha deve ter no mínimo 3 caracteres!',
+            'password.max' => 'O campo de senha deve ter no máximo 20 caracteres!',
+        ]
+    );
+
 
         $username = $request->input('username');
         $email = $request->input('email');
