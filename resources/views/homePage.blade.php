@@ -20,19 +20,29 @@ https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp -->
             <!-- Coluna do Form -->
             <div class="col-md-5">
                 <h2>Crie uma conta!</h2>
-                <form>
+                <form method="POST" action="/register" novalidate>
+                    @csrf
                     <div class="form-group">
                         <label for="usr">Nome:</label>
-                        <input type="text" class="form-control" id="nome">
+                        <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                     </div>
+                    @error('username')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="form-group">
                         <label for="pwd">Email:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                     </div>
+                     @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="form-group">
                         <label for="pwd">Senha:</label>
-                        <input type="password" class="form-control" id="Senha" >
+                        <input type="password" class="form-control" name="password">
                     </div>
+                     @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                 </form>
                 <div>
