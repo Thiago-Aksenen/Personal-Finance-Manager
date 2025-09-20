@@ -13,7 +13,7 @@ class AuthController extends Controller
     }
     public function login()
     {
-        echo 'login';
+        echo 'login novo';
     }
     public function register(Request $request)
     {
