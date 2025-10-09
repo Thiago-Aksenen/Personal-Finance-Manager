@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    function homePage()
+    public function homePage()
     {
         return view('homePage');
     }
+
     public function login()
     {
-        echo 'login';
+        return view('login');
     }
-    
+
     public function register(Request $request)
     {
         $request->validate(
@@ -37,7 +37,7 @@ class AuthController extends Controller
                 'password.required' => 'O campo de senha é obrigatório!',
                 'password.min' => 'O campo de senha deve ter no mínimo 3 caracteres!',
                 'password.max' => 'O campo de senha deve ter no máximo 20 caracteres!',
-            ],
+            ]
         );
 
         try {
@@ -64,7 +64,45 @@ class AuthController extends Controller
 
         echo '<pre>';
         print_r($usuarios);
-        
     }
 
+    public function enter(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $user = User::where('username', $username)
+            ->whereNull('deleted_at')
+            ->first();
+
+        if (!$user) {
+            return redirect()->back()
+                ->withInput()
+                ->with('login_error', 'Username ou password incorretos.');
+        }
+
+        if (!password_verify($password, $user->password)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('login_error', 'Username ou password incorretos.');
+        }
+
+        $user->last_login = now();
+        $user->save();
+
+        session([
+            'user' => [
+                'id' => $user->id,
+                'username' => $user->username,
+            ]
+        ]);
+
+        return redirect('/dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        session()->forget('user');
+        return redirect()->route('login');
+    }
 }

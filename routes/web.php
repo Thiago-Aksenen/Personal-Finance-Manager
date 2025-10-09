@@ -6,11 +6,29 @@ use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\DespesaController;
 use App\Models\Receita;
 
+// Rotas de autenticação e página inicial
 Route::get('/homepage', [AuthController::class, 'homePage'])->name('homePage');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/enter', [AuthController::class, 'enter'])->name('enter');
 
-// Receitas
+// Rotas de layout e páginas fixas
+Route::get('/teste-layout', function () {
+    return view('layouts.navegacao_layout');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
+
+// =========================
+// Rotas de Receitas
+// =========================
 Route::get('/receitas', [ReceitaController::class, 'index'])->name('receitas.index');
 Route::get('/receitas/create', [ReceitaController::class, 'create'])->name('receitas.create');
 Route::post('/receitas', [ReceitaController::class, 'store'])->name('receitas.store');
@@ -18,7 +36,9 @@ Route::get('/receitas/{id}/edit', [ReceitaController::class, 'edit'])->name('rec
 Route::put('/receitas/{id}', [ReceitaController::class, 'update'])->name('receitas.update');
 Route::delete('/receitas/{id}', [ReceitaController::class, 'destroy'])->name('receitas.destroy');
 
-// Despesas
+// =========================
+// Rotas de Despesas
+// =========================
 Route::get('/despesas', [DespesaController::class, 'index'])->name('despesas.index');
 Route::get('/despesas/create', [DespesaController::class, 'create'])->name('despesas.create');
 Route::post('/despesas', [DespesaController::class, 'store'])->name('despesas.store');
