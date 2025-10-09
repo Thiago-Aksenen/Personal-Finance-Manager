@@ -6,3 +6,6 @@ https://www.figma.com/design/87qWqMFvb011EMWSHtX1Z4/Desv.-WEB?node-id=5-155&t=a5
 
 Conexão com banco base:
 <img width="1300" height="1280" alt="Relacionamentos bd web" src="https://github.com/user-attachments/assets/3a5f1a4e-5ca6-48fb-bb51-d55c493aabf2" />
+
+DER
+<img width="887" height="691" alt="der" src="https://github.com/user-attachments/assets/5f7f7d59-c031-44b0-959d-db06862af2a9" />
