@@ -15,7 +15,7 @@ class DespesasTableSeeder extends Seeder
     {
 
          DB::table('despesas')->insert([
-            'data' => '2023-10-01',
+            'data_despesa' => '2023-10-01',
             'categoria' => 'Salário',
             'valor' => 5000.00,
             'user_id' => 1,
@@ -24,7 +24,7 @@ class DespesasTableSeeder extends Seeder
         ]);
 
         DB::table('despesas')->insert([
-            'data' => '2023-10-05',
+            'data_despesa' => '2023-10-05',
             'categoria' => 'Freelance',
             'valor' => 1200.00,
             'user_id' => 1,
@@ -33,7 +33,7 @@ class DespesasTableSeeder extends Seeder
         ]);
 
         DB::table('despesas')->insert([
-            'data' => '2023-10-10',
+            'data_despesa' => '2023-10-10',
             'categoria' => 'Investimentos',
             'valor' => 300.00,
             'user_id' => 1,

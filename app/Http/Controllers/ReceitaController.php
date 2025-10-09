@@ -10,31 +10,29 @@ class ReceitaController extends Controller
     public function index()
     {
         $receitas = Receita::orderBy('data_receita', 'desc')->get();
-        return view('receitas.index_receitas', compact('receitas'));
+        return view('index_receitas', compact('receitas'));
     }
 
     public function create()
     {
-        return view('receitas.create_receitas');
+        return view('create_receitas');
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'data_receita' => 'required|date',
-            'categoria' => 'required|string|max:20',
-            'valor' => 'required|numeric',
-        ]);
+    public function store(Request $request) {
+    $receita = new Receita();
+    $receita->data_receita = $request->input('data_receita');
+    $receita->categoria = $request->input('categoria');
+    $receita->valor = $request->input('valor');
+    $receita->user_id = auth()->id(); 
+    $receita->save();
 
-        Receita::create($validated);
-
-        return redirect()->route('receitas.index')->with('success', 'Receita criada com sucesso!');
-    }
+    return redirect()->route('receita.index');
+}
 
     public function edit($id)
     {
         $receita = Receita::findOrFail($id);
-        return view('receitas.edit_receitas', compact('receita'));
+        return view('edit_receitas', compact('receita'));
     }
 
     public function update(Request $request, $id)

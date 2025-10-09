@@ -1,6 +1,9 @@
 @extends('layouts.pages_layout')
+@extends('layouts.navegacao_layout')
 
 @section('title', 'Lista de Despesas')
+
+@section('sidebar')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">

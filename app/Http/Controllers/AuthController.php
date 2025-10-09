@@ -8,83 +8,59 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function homePage()
-    {
-        return view('homePage');
+
+    public function dashboard() {
+
+        return view('dashboard');
+
     }
+
+    public function register()
+    {
+        return view('register');
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|min:3|max:20',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:3|max:20',
+        ]);
+
+        User::create([
+            'nome' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        return redirect()->route('login')->with('status', 'Usuário cadastrado com sucesso! Faça login.');
+    }
+
 
     public function login()
     {
         return view('login');
     }
 
-    public function register(Request $request)
+    public function loginSubmit(Request $request)
     {
-        $request->validate(
-            [
-                'username' => 'required|min:3|max:20',
-                'email' => 'required|email',
-                'password' => 'required|min:3|max:20',
-            ],
-            [
-                'username.required' => 'O campo de nome é obrigatório!',
-                'username.min' => 'O campo de nome deve ter no mínimo 3 caracteres!',
-                'username.max' => 'O campo de nome deve ter no máximo 20 caracteres!',
-
-                'email.required' => 'O campo de email é obrigatório!',
-                'email.email' => 'O valor digitado deve ser um email!',
-
-                'password.required' => 'O campo de senha é obrigatório!',
-                'password.min' => 'O campo de senha deve ter no mínimo 3 caracteres!',
-                'password.max' => 'O campo de senha deve ter no máximo 20 caracteres!',
-            ]
-        );
-
-        try {
-            DB::connection()->getPdo();
-            echo 'Connection is OK <br>';
-        } catch (\PDOException $e) {
-            echo 'A conexão falhou: ' . $e->getMessage();
-        }
-
-        $username = $request->input('username');
         $email = $request->input('email');
         $password = $request->input('password');
 
-        echo 'Usuário: ' . $username . '<br>';
-        echo 'Email: ' . $email . '<br>';
-        echo 'Senha: ' . $password;
 
-        $this->listarUsuarios();
-    }
-
-    public function listarUsuarios()
-    {
-        $usuarios = User::all()->toArray();
-
-        echo '<pre>';
-        print_r($usuarios);
-    }
-
-    public function enter(Request $request)
-    {
-        $username = $request->input('username');
-        $password = $request->input('password');
-
-        $user = User::where('username', $username)
-            ->whereNull('deleted_at')
-            ->first();
+        $user = User::where('email', $email)->whereNull('deleted_at')->first();
 
         if (!$user) {
             return redirect()->back()
                 ->withInput()
-                ->with('login_error', 'Username ou password incorretos.');
+                ->with('login_error', 'Email ou password incorretos.');
         }
 
         if (!password_verify($password, $user->password)) {
             return redirect()->back()
                 ->withInput()
-                ->with('login_error', 'Username ou password incorretos.');
+                ->with('login_error', 'password incorreta.');
         }
 
         $user->last_login = now();
@@ -93,11 +69,11 @@ class AuthController extends Controller
         session([
             'user' => [
                 'id' => $user->id,
-                'username' => $user->username,
+                'email' => $user->email,
             ]
         ]);
 
-        return redirect('/dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request)

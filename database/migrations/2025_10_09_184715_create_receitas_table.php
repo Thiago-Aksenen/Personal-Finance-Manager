@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->autoincrement();
             $table->date('data_receita');
             $table->string('categoria', 20)->nullable();
-            $table->numeric('valor', 8, 2)->nullable();
+            $table->double('valor', 8, 2)->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps(); // created_at e updated_at
             $table->softDeletes(); // deleted_at (soft delete)

@@ -1,4 +1,4 @@
-@extends('layouts.page_layout')
+@extends('layouts.pages_layout')
 
 @section('title', 'Editar Despesa')
 

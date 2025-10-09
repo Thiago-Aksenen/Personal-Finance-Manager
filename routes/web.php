@@ -7,11 +7,11 @@ use App\Http\Controllers\DespesaController;
 use App\Models\Receita;
 
 // Rotas de autenticação e página inicial
-Route::get('/homepage', [AuthController::class, 'homePage'])->name('homePage');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::get('/', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'create'])->name('register.post');
+Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/enter', [AuthController::class, 'enter'])->name('enter');
+Route::post('/login-submit', [AuthController::class, 'loginSubmit'])->name('login.submit');
 
 // Rotas de layout e páginas fixas
 Route::get('/teste-layout', function () {

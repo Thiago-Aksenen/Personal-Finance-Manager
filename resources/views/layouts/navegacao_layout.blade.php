@@ -40,14 +40,14 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('receitas') }}"
+                <a href="{{ route('receitas.index') }}"
                     class="nav-link text-white {{ Route::is('receitas') ? 'active-link' : '' }}">
                     <i class="fas fa-wallet me-2"></i> Receitas
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('despesas') }}"
+                <a href="{{ route('despesas.index') }}"
                     class="nav-link text-white {{ Route::is('despesas') ? 'active-link' : '' }}">
                     <i class="fas fa-money-bill-wave me-2"></i> Despesas
                 </a>

@@ -19,7 +19,7 @@
             <!-- Coluna do Form -->
             <div class="col-md-5">
                 <h2>Crie uma conta!</h2>
-                <form method="GET" action="/register" novalidate>
+                <form method="POST" action="{{ route('register.post') }}" novalidate>
                     @csrf
                     <div class="form-group">
                         <label for="usr">Login:</label>

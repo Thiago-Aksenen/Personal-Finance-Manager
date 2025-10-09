@@ -13,17 +13,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        
         DB::table('users')->insert([
-            'nome' => 'Admin User',
-            'email' => 'onlyuser@hotmail.com',
-            'password' => Hash::make('123User!'),
+            'nome' => 'Adm Pedro',
+            'email' => 'pedro@gmail.com',
+            'password' => Hash::make('123_User'),
             'sexo' => 'M',
             'telefone' => '1234567890',
             'descricao' => 'Administrador do sistema',
             'data_cadastro' => '2023-10-01',
-            'data_nascimento' => '1990-01-01',
-            'is_notificada' => true,
+            'data_nascimento' => '2008-07-08',
+            'is_notificada' => false,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

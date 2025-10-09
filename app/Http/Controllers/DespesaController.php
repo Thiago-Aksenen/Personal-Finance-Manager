@@ -13,7 +13,7 @@ class DespesaController extends Controller
     public function index()
     {
         $despesas = Despesa::orderBy('data_despesa', 'desc')->get();
-        return view('despesas.index_despesas', compact('despesas'));
+        return view('index_despesas', compact('despesas'));
     }
 
     /**
@@ -21,24 +21,22 @@ class DespesaController extends Controller
      */
     public function create()
     {
-        return view('despesas.create_despesas');
+        return view('create_despesas');
     }
 
     /**
      * Armazena uma nova despesa no banco.
      */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'data_despesa' => 'required|date',
-            'categoria' => 'required|string|max:20',
-            'valor' => 'required|numeric',
-        ]);
+    public function store(Request $request) {
+    $despesa = new Despesa();
+    $despesa->data_despesa = $request->input('data_despesa');
+    $despesa->categoria = $request->input('categoria');
+    $despesa->valor = $request->input('valor');
+    $despesa->user_id = auth()->id();
+    $despesa->save();
 
-        Despesa::create($validated);
-
-        return redirect()->route('despesas.index')->with('success', 'Despesa criada com sucesso!');
-    }
+    return redirect()->route('despesas.index');
+}
 
     /**
      * Exibe o formulário de edição da despesa.
@@ -46,7 +44,7 @@ class DespesaController extends Controller
     public function edit($id)
     {
         $despesa = Despesa::findOrFail($id);
-        return view('despesas.edit_despesas', compact('despesa'));
+        return view('edit_despesas', compact('despesa'));
     }
 
     /**

@@ -32,7 +32,7 @@
     <div class="container-form">
 
 
-        <form action="/enter" method="POST" novalidate>
+        <form action="{{ route('login.submit') }}" method="POST" novalidate>
             @csrf
             <div class="container login-box">
                 <i class="bi bi-person-circle"
@@ -42,14 +42,18 @@
                 <div class="form-group">
                     <label for="Email" style="color: white;">E-mail:</label>
                     <br>
-                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" value="{{ old('email') }}">
+                    <!-- Campo Email -->
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu e-mail" value="{{ old('email') }}">
+
                     <br>
                 </div>
 
                 <div class="form-group">
                     <label for="Senha" style="color: white;">Senha:</label>
                     <br>
-                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" value="{{ old('password') }}">
+                    <!-- Campo Senha -->
+                    <input type="password" class="form-control" name="password" id="senha" placeholder="Digite sua senha">
+
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block rounded-pill">Login</button>
