@@ -14,7 +14,7 @@
 <table class="table table-bordered table-striped align-middle">
     <thead class="table-primary">
         <tr>
-            <th>ID</th>
+            <th>Código</th>
             <th>Data</th>
             <th>Categoria</th>
             <th>Valor</th>
