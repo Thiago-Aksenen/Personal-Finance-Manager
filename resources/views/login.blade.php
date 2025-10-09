@@ -55,6 +55,13 @@
                 <button type="submit" class="btn btn-primary btn-block rounded-pill">Login</button>
             </div>
         </form>
+
+        @if(session('login_error'))
+        <div class="alert alert-danger text-center">
+            {{ session('login_error') }}
+        </div>
+        @endif
+        
     </div>
 
 </body>
