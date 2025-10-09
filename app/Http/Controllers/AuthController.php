@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -15,6 +17,7 @@ class AuthController extends Controller
     {
         echo 'login';
     }
+    
     public function register(Request $request)
     {
         $request->validate(
@@ -51,5 +54,17 @@ class AuthController extends Controller
         echo 'Usuário: ' . $username . '<br>';
         echo 'Email: ' . $email . '<br>';
         echo 'Senha: ' . $password;
+
+        $this->listarUsuarios();
     }
+
+    public function listarUsuarios()
+    {
+        $usuarios = User::all()->toArray();
+
+        echo '<pre>';
+        print_r($usuarios);
+        
+    }
+
 }

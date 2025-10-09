@@ -1,5 +1,4 @@
-<!-- peguei as coisas do bootstrap!!
-https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp -->
+@extends('layouts.main_layout')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,16 +13,16 @@ https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp -->
 </head>
 
 <body>
-
+    @section('content')
     <div class="container" style="height:100vh;"> <!-- altura total da tela -->
         <div class="row" style="height:100%; display:flex; align-items:center;">
             <!-- Coluna do Form -->
             <div class="col-md-5">
                 <h2>Crie uma conta!</h2>
-                <form method="POST" action="/register" novalidate>
+                <form method="GET" action="/register" novalidate>
                     @csrf
                     <div class="form-group">
-                        <label for="usr">Nome:</label>
+                        <label for="usr">Login:</label>
                         <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                     </div>
                     @error('username')
@@ -58,7 +57,7 @@ https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp -->
             </div>
         </div>
     </div>
-
+    @endsection('homepage')
 
 </body>
 

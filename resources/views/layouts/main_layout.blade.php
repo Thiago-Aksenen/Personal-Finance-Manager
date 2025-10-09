@@ -1,4 +1,5 @@
-<!-- Esse bagulho de CDN é tipo um depósito na internet que já tem as bibliotecas prontas, então teu site só “puxa” de lá. -->
+<!-- Esse bagulho de CDN é tipo um depósito na internet que já tem as bibliotecas prontas, então teu site só “puxa” de lá. Tigo-->
+<!-- Ou seja, você não precisa baixar os arquivos do bootstrap para usá-lo. Pedro-->
 <!DOCTYPE html>
 <html lang="en">
 
