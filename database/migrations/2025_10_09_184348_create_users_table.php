@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('sexo', 1)->nullable();
             $table->string('telefone', 15)->nullable();
             $table->string('descricao', 200)->nullable();
-            $table->date('data_cadastro');
-            $table->date('data_nascimento');
+            $table->timestamp('data_cadastro')->useCurrent();
+            $table->datetime('data_nascimento')->nullable();
             $table->boolean('is_notificada')->default(false);
-            $table->timestamps();
             $table->softDeletes();
         });
     }
