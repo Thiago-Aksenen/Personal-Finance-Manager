@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -24,9 +25,7 @@ Route::middleware([CheckIsLogged::class])->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [Logincontroller::class, 'logout'])->name('login.logout');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/perfil', [LoginController::class, 'perfil'])->name('perfil');
 
     // CRUD RECEITAS

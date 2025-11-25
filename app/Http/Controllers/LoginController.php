@@ -52,6 +52,6 @@ class LoginController extends Controller
         $totalReceitas = Receita::where('id_usuario', $userId)->count();
         $totalDespesas = Despesa::where('id_usuario', $userId)->count();
 
-        return view('perfil', ['totalReceitas' => $totalReceitas, 'totalDespesas' => $totalDespesas]);
+        return view('user.perfil', ['totalReceitas' => $totalReceitas, 'totalDespesas' => $totalDespesas]);
     }
 }
