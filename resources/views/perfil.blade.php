@@ -1,0 +1,1 @@
+perfil do {{ auth()->user()->nome }}
