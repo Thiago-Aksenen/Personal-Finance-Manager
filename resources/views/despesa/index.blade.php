@@ -4,7 +4,16 @@
             {{ session('message') }}
         </div>
     @endif
-
+    @if ($despesas->isNotEmpty())
+        <x-filter>
+            <option value="">Todas</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="compras">Compras</option>
+            <option value="transporte">Transporte</option>
+            <option value="lazer">Lazer</option>
+            <option value="outro">Outro</option>
+        </x-filter>
+    @endif
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="mb-0"></h2>
@@ -13,8 +22,10 @@
             </a>
         </div>
         @if ($despesas->isEmpty())
-            <div class="text-center">Nenhuma <strong>despesa</strong> encontrada, por favor adicione alguma!</div>
+            <div class="text-center">Nenhuma <strong>despesa</strong> encontrada, por favor adicione alguma!
+            </div>
         @else
+            <br>
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle">
                     <thead class="table-dark">

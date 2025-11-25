@@ -5,13 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Despesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isEmpty;
 
 class DespesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
-        $despesas = Despesa::where('id_usuario', $userId)->get();
+
+        $query = Despesa::where('id_usuario', $userId);
+
+        if ($request->filled('categoria')) {
+            $query->where('categoria', $request->categoria);
+        }
+
+        if ($request->filled('data_inicio')) {
+            $query->where('data', '>=', $request->data_inicio);
+        }
+
+        if ($request->filled('data_fim')) {
+            $query->where('data', '<=', $request->data_fim);
+        }
+
+        $despesas = $query->orderBy('data', 'desc')->get();
+
         return view('despesa.index', ['despesas' => $despesas]);
     }
     public function create()
