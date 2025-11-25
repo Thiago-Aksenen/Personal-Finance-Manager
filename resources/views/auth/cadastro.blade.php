@@ -1,4 +1,4 @@
-<x-layout title="Cadastro">
+<x-auth title="Cadastro">
     <div>
         Crie uma conta
         <form action="{{ route('register.store') }}" method="post">
@@ -21,4 +21,4 @@
         <br>
         Já tem uma conta? Clique em <a href="{{ route('login.login') }}">Login</a>.
     </div>
-</x-layout>
+</x-auth>
