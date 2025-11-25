@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Despesa;
 use App\Models\Usuario;
+use App\Models\Receita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -42,5 +44,14 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('register.create');
+    }
+
+    public function perfil()
+    {
+        $userId = Auth::id();
+        $totalReceitas = Receita::where('id_usuario', $userId)->count();
+        $totalDespesas = Despesa::where('id_usuario', $userId)->count();
+
+        return view('perfil', ['totalReceitas' => $totalReceitas, 'totalDespesas' => $totalDespesas]);
     }
 }

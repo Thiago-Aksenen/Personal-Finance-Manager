@@ -4,7 +4,15 @@
             {{ session('message') }}
         </div>
     @endif
-
+    @if ($receitas->isNotEmpty())
+        <x-filter>
+            <option value="">Todas</option>
+            <option value="servico">Servico</option>
+            <option value="aluguel">Aluguel</option>
+            <option value="investimento">Investimento</option>
+            <option value="outro">Outro</option>
+        </x-filter>
+    @endif
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="mb-0"></h2>
@@ -15,6 +23,7 @@
         @if ($receitas->isEmpty())
             <div class="text-center">Nenhuma <strong>receita</strong> encontrada, por favor adicione alguma!</div>
         @else
+        <br>
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle">
                     <thead class="table-dark">

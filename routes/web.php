@@ -27,9 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/perfil', function () {
-        return view('perfil');
-    })->name('perfil');
+    Route::get('/perfil', [LoginController::class, 'perfil'])->name('perfil');
 
     // CRUD RECEITAS
     Route::get('/receita', [ReceitaController::class, 'index'])->name('receita.index');
