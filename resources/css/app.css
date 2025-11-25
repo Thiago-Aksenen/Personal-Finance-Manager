@@ -1,1 +1,22 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.header-animado {
+    color: white;
+    background: linear-gradient(-45deg, #0f1f2f, #0a101a, #0d1a2a);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
