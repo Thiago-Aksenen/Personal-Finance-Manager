@@ -22,6 +22,15 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="email" class="form-label text-white">Email</label>
+                    <input type="email" name="email" class="form-control bg-dark text-white border-secondary"
+                        value="{{ old('email') }}">
+                    @error('email')
+                        <div class="text-danger small">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="senha" class="form-label text-white">Senha</label>
                     <input type="password" name="senha" class="form-control bg-dark text-white border-secondary"
                         value="{{ old('senha') }}">

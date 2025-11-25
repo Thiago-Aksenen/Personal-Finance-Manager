@@ -16,7 +16,7 @@ class Usuario extends Authenticatable
     }
 
     protected $table = 'usuarios';
-    protected $fillable = ['nome', 'senha'];
+    protected $fillable = ['nome', 'senha', 'email'];
     protected $hidden = ['senha'];
     public $timestamps = false;
     public function getAuthPassword()

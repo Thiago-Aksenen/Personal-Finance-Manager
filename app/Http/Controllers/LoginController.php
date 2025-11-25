@@ -20,13 +20,16 @@ class LoginController extends Controller
     {
         $request->validate([
             'nome' => 'required',
+            'email' => 'required|email',
             'senha' => 'required'
         ]);
 
-        $usuario = Usuario::where('nome', $request->nome)->first();
+        $usuario = Usuario::where('nome', $request->nome)
+            ->where('email', $request->email)
+            ->first();
 
         if (!$usuario) {
-            return back()->withInput()->with('message', 'Não foi encontrado nenhum usuário com esse nome!');
+            return back()->withInput()->with('message', 'Não foi encontrado nenhum usuário com esse nome e email!');
         }
 
         if (!Hash::check($request->senha, $usuario->senha)) {
@@ -44,14 +47,5 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('register.create');
-    }
-
-    public function perfil()
-    {
-        $userId = Auth::id();
-        $totalReceitas = Receita::where('id_usuario', $userId)->count();
-        $totalDespesas = Despesa::where('id_usuario', $userId)->count();
-
-        return view('user.perfil', ['totalReceitas' => $totalReceitas, 'totalDespesas' => $totalDespesas]);
     }
 }

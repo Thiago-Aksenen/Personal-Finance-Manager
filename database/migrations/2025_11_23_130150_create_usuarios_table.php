@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 100);
             $table->string('senha');
+            $table->string('email')->unique();
         });
     }
     public function down(): void

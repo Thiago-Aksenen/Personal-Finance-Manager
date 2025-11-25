@@ -8,7 +8,6 @@
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-body">
 
-                        {{-- Nome --}}
                         <div class="mb-3">
                             <label class="fw-bold text-secondary">Nome</label>
                             <p class="mb-0 fs-5">
@@ -16,15 +15,13 @@
                             </p>
                         </div>
 
-                        {{-- Email --}}
                         <div class="mb-3">
                             <label class="fw-bold text-secondary">Email</label>
-                            <p class="text-muted mb-0">Vou adicionar depois</p>
+                            <p class="text-muted mb-0">{{ auth()->user()->email }}</p>
                         </div>
 
                         <hr>
 
-                        {{-- Totais --}}
                         <div class="mb-2">
                             <label class="fw-bold text-secondary">Total de receitas adicionadas</label>
                             <p class="fs-5">{{ $totalReceitas ?? 0 }}</p>
@@ -42,12 +39,5 @@
         </div>
 
     </div>
-
-    <script>
-        function toggleSenha() {
-            const senha = document.getElementById('senha-revelada');
-            senha.classList.toggle('d-none');
-        }
-    </script>
 
 </x-layout>

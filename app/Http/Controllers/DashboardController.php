@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Despesa;
 use App\Models\Receita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // É uma boa prática importar o Auth
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -42,5 +42,13 @@ class DashboardController extends Controller
             'TotalReceita'  => $totalReceita,
             'TotalDespesa'  => $totalDespesa,
         ]);
+    }
+    public function perfil()
+    {
+        $userId = Auth::id();
+        $totalReceitas = Receita::where('id_usuario', $userId)->count();
+        $totalDespesas = Despesa::where('id_usuario', $userId)->count();
+
+        return view('user.perfil', ['totalReceitas' => $totalReceitas, 'totalDespesas' => $totalDespesas]);
     }
 }

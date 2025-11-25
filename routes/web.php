@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [Logincontroller::class, 'logout'])->name('login.logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/perfil', [LoginController::class, 'perfil'])->name('perfil');
+    Route::get('/perfil', [DashboardController::class, 'perfil'])->name('perfil');
 
     // CRUD RECEITAS
     Route::get('/receita', [ReceitaController::class, 'index'])->name('receita.index');
