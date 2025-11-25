@@ -10,7 +10,9 @@
 
 <body>
 
-    <div class="d-flex">
+    <x-header :title="$title" />
+
+    <div class="d-flex" style="min-height: 100vh;">
 
         <x-sidebar />
 

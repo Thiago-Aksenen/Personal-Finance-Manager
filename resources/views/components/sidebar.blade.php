@@ -21,16 +21,4 @@
         </li>
 
     </ul>
-
-    <hr>
-    <a href="{{ route('perfil') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : 'link-dark' }}">
-        Perfil
-    </a>
-    <form action="{{ route('login.logout') }}" method="post" class="mt-3">
-        @csrf
-        <button type="submit" class="btn btn-link p-0 text-danger" style="text-decoration:none;">
-            Sair
-        </button>
-    </form>
-
 </div>

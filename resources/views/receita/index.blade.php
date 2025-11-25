@@ -6,8 +6,6 @@
     @endif
 
     <div>
-        <h1>Receitas</h1>
-        <br>
         <a href="{{ route('receita.create') }}"><button>Adicionar nova receita</button></a>
         <br>
         <table border="1">
