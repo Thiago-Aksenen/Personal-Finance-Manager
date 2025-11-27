@@ -8,12 +8,29 @@ use Illuminate\Support\Facades\Auth;
 
 class ReceitaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
-        $receitas = Receita::where('id_usuario', $userId)->get();
+
+        $query = Receita::where('id_usuario', $userId);
+
+        if ($request->filled('categoria')) {
+            $query->where('categoria', $request->categoria);
+        }
+
+        if ($request->filled('data_inicio')) {
+            $query->where('data', '>=', $request->data_inicio);
+        }
+
+        if ($request->filled('data_fim')) {
+            $query->where('data', '<=', $request->data_fim);
+        }
+
+        $receitas = $query->orderBy('data', 'desc')->get();
+
         return view('receita.index', ['receitas' => $receitas]);
     }
+
     public function create()
     {
         return view('receita.create');
